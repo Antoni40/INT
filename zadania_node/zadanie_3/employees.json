@@ -1,0 +1,46 @@
+{
+    "employees": [
+        {
+            "id": 4,
+            "name": "Jan",
+            "surname": "Kowalski",
+            "job": "Gardener"
+        },
+        {
+            "id": 2,
+            "name": "Monika",
+            "surname": "Kowalska",
+            "job": "Lawyer"
+        },
+        {
+            "id": 3,
+            "name": "Piotr",
+            "surname": "Kowalski",
+            "job": "Teacher"
+        },
+        {
+            "id": 4,
+            "name": "Tomasz",
+            "surname": "Kowalski",
+            "job": "Manager"
+        },
+        {
+            "id": 4,
+            "name": "Tomasz",
+            "surname": "Kowalski",
+            "job": "Manager"
+        },
+        {
+            "id": 4,
+            "name": "Tomasz",
+            "surname": "Kowalski",
+            "job": "Manager"
+        },
+        {
+            "id": 4,
+            "name": "Tomasz",
+            "surname": "Kowalski",
+            "job": "Manager"
+        }
+    ]
+}
