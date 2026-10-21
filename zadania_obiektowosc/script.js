@@ -1,4 +1,4 @@
-//<-Zadanie 1->
+//---Zadanie 1---
 class KontoBankowe {
   #saldo = 0;
 
@@ -13,44 +13,61 @@ class KontoBankowe {
   }
 }
 
-//<-Zadanie 2->
+//--Testy--
+const kontobankowe = new KontoBankowe();
+console.log(`Saldo konta bankowego wynosi: ${kontobankowe.getSaldo()}`);
+kontobankowe.deposit(100);
+console.log(`Saldo konta bankowego wynosi: ${kontobankowe.getSaldo()}`);
+kontobankowe.withdraw(50);
+console.log(`Saldo konta bankowego wynosi: ${kontobankowe.getSaldo()}`);
+
+//---Zadanie 2---
 class Person {
   static introducePerson(name, surname) {
     return (name && surname) ? `Nazywam się ${name} ${surname}` : `Podano nieprawidlowe imie lub nazwisko`;
   }
 }
 
-//<-Zadanie 3->
+//--Testy--
+Person.introducePerson("Antoni", "Lubomski");
+Person.introducePerson(10, 5);
+
+//---Zadanie 3---
 const Osoba = {
   greeting() {
     return "Witam cię bardzo serdecznie";
   }
 }
 
-const Uczen = {
-  gradesList: [1, 5, 6, 2],
-  
-  countAvgGrade() {
+const Uczen = Object.create(Osoba);
+Uczen.gradesList = [1, 5, 6, 2];
+
+Uczen.countAvgGrade = function() {
     let sum = 0;
-    let gradesListLength = this.gradesList.length;
-    for(grade of this.gradeList) {
+    for(let grade of this.gradesList) {
       sum += grade;
     }
-    return sum / length;
-  }
-
+    return sum / this.gradesList.length;
 }
+//--Testy--
+console.log(`Oceny ucznia: ${Uczen.gradesList}`);
+console.log(`Średnia ocen ucznia: ${Uczen.countAvgGrade()}`);
 
-Object.setPrototypeOf(Uczen, Osoba);
 
-//<-Zadanie 4->
+//---Zadanie 4---
 class SrodekTransportu {
   marka;
   model;
   srodowisko;
   
   constructor() {
-    throw new Error("Nie mozna stworzyc obiektu klasy abstrakcyjnej");
+    if(this.constructor == SrodekTransportu)
+      throw new Error("Nie mozna stworzyc obiektu klasy abstrakcyjnej");
+
+    this.marka = "-";
+    this.model = "-";
+    this.srodowisko = "-";
+    
   }
 
   getMarka() {
@@ -78,9 +95,7 @@ class Samolot extends SrodekTransportu {
   #typSamolotu;
 
   constructor() {
-    this.marka = "-";
-    this.model = "-";
-    this.srodowisko = "-";
+    super();
     this.#typSamolotu = "-";
   }
   
@@ -97,9 +112,7 @@ class Auto extends SrodekTransportu {
   #paliwo;
 
   constructor() {
-    this.marka = "-";
-    this.model = "-";
-    this.srodowisko = "-";
+    super();
     this.#paliwo = "-";
   }
 
@@ -116,9 +129,7 @@ class Lodz extends SrodekTransportu {
   #typLodzi;
 
   constructor() {
-    this.marka = "-";
-    this.model = "-";
-    this.srodowisko = "-";
+    super();
     this.#typLodzi = "-";
   }
 
@@ -132,8 +143,18 @@ class Lodz extends SrodekTransportu {
 
 }
 
-//<-Zadanie 5->
-//na klasach
+//--Testy--
+try {
+  const trans = new SrodekTransportu();
+} catch(err) {
+  console.log(err);
+}
+const lodz = new Lodz();
+lodz.setTypLodzi("Motorówka");
+console.log(`Typ lodzi to: ${lodz.getTypLodzi}`);
+
+//---Zadanie 5---
+// Na klasach
 class Psowate {
   dajGlos() {
     console.log("Nie mam glosu");
@@ -152,13 +173,17 @@ class Wilk extends Psowate {
   }
 }
 
-class Szceniak extends Pies {
+class Szczeniak extends Pies {
   dajGlos() {
     console.log("Hau, hau! (wysokim tonem)");
   }
 }
 
-//na prototypach
+//--Testy--
+const pies1 = new Szczeniak();
+pies1.dajGlos();
+
+// Na prototypach
 const psowate = {
   dajGlos() {
     console.log("Nie mam glosu");
@@ -180,8 +205,11 @@ szczeniak.dajGlos = () => {
     console.log("Hau, hau! (wysokim tonem)");
 }
 
+//--Testy--
+szczeniak.dajGlos();
 
-//<-Zadanie 6->
+
+//---Zadanie 6---
 class Artysta {
   constructor() {
     if(this.constructor == Artysta) {
@@ -220,10 +248,13 @@ class Pisarz extends Artysta {
   }
 }
 
-pisarz = new Pisarz();
-pisarz.tworzDzielo();
+//--Testy--
+const pisarz = new Pisarz();
+console.log(pisarz.tworzDzielo());
+console.log(pisarz.kontempluj());
 
-//<-Zadanie 7->
+//---Zadanie 7---
+const usersList = [];
 const userSignInForm = document.querySelector('#userForm');
 userSignInForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -246,7 +277,9 @@ userSignInForm.addEventListener('submit', (e) => {
     passwordInput.value = "";
   } else {
     user = new Uzytkownik(firstNameInput.value, secondNameInput.value, emailInput.value, passwordInput.value);
+    usersList.push(user);
     user.wyswietl();
+    console.log(`Lista wszystkich uzytkowników ${usersList}`);
   }
 }) 
 
@@ -292,7 +325,9 @@ class Uzytkownik {
     console.log(`Imie: ${this.#imie} Nazwisko: ${this.#nazwisko} E-mail: ${this.#email} Hasła nie podam`);
   }
 }
-//<-Zadanie 8->
+
+
+//---Zadanie 8---
 class Kalkulatorprosty {
   static dodaj(a, b){
     return a + b;
@@ -336,4 +371,6 @@ class Kalkulatorprosty {
   }
 }
 
-console.log(Kalkulatorprosty.obliczPierwiastek(3));
+//--Testy--
+console.log(`Pierwiastek z 3 = ${Kalkulatorprosty.obliczPierwiastek(3)}`);
+console.log(`3 + 2 = ${Kalkulatorprosty.dodaj(3, 2)}`);
