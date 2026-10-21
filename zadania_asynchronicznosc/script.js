@@ -1,7 +1,7 @@
 //<--zadanie 1-->
 setTimeout(() => {
   console.log("Hello World.");
-})
+}, 3000)
 
 //<--zadanie 2-->
 const osoba = {
@@ -15,12 +15,9 @@ const person = {
 
 function checkIfNamePresent(person) {
   try {
-    if (person.name == undefined){
-      throw new Error("Nie ma pola w obiekcie o nazwie name");
-    }
     console.log(person.name);
   } catch(err) {
-    console.log(err.message);
+    console.log(`Nie udało się odczytać pola name ${err.message}`);
   }
 }
 
