@@ -23,8 +23,15 @@ fs.readFile("employees.json", "utf-8", (err, data) => {
                 else console.log("Employee added successfully");
             })
 
-            const newEmployeeFound = employees.find(employee => employee.id = 4);
-            console.log(`Nowy pracownik to: ${newEmployeeFound.name} ${newEmployeeFound.surname} o id ${newEmployee.id}`);
+            fs.readFile("employees.json", (err, data) => {
+                if(err) console.log("Error while reading a file", err);
+
+                const jsonData = JSON.parse(data);
+                const employees = jsonData.employees;
+
+                const newlyAddedEmployee = employees.find(employee => employee.id = 4);
+                console.log(`Nowy pracownik to: ${newlyAddedEmployee.name} ${newlyAddedEmployee.surname} o id ${newlyAddedEmployee.id}`);
+            })
         } catch(err) {
             console.log("Error while parsing", err);
         }
