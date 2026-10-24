@@ -1,0 +1,16 @@
+[
+  {
+    "id": 0,
+    "name": "Piotr",
+    "surname": "Nowak",
+    "age": 35,
+    "haslo": "haslo123$"
+  },
+  {
+    "id": 1,
+    "name": "Urszula",
+    "surname": "Nowak",
+    "age": 25,
+    "haslo": "haslo987!"
+  }
+]
